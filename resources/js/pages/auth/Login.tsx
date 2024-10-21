@@ -3,7 +3,7 @@ import InputError from '@/components/InputError';
 import InputLabel from '@/components/InputLabel';
 import PrimaryButton from '@/components/PrimaryButton';
 import TextInput from '@/components/TextInput';
-import GuestLayout from '@/Layouts/GuestLayout';
+import GuestLayout from '@/layouts/GuestLayout';
 import { Head, Link, useForm } from '@inertiajs/react';
 import { FormEventHandler } from 'react';
 
@@ -72,7 +72,7 @@ export default function Login({
                     <InputError message={errors.password} className="mt-2" />
                 </div>
 
-                <div className="mt-4 block">
+                <div className="flex items-center justify-between py-4">
                     <label className="flex items-center">
                         <Checkbox
                             name="remember"
@@ -85,21 +85,26 @@ export default function Login({
                             Remember me
                         </span>
                     </label>
-                </div>
-
-                <div className="mt-4 flex items-center justify-end">
                     {canResetPassword && (
                         <Link
                             href={route('password.request')}
-                            className="rounded-md text-sm text-gray-600 underline hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                            className="btn-link"
                         >
                             Forgot your password?
                         </Link>
                     )}
+                </div>
+                <div className="mt-4 flex items-center justify-center">
 
                     <PrimaryButton className="ms-4" disabled={processing}>
                         Log in
                     </PrimaryButton>
+                </div>
+
+                <div className="flex justify-center my-2">
+                    <Link href={route("register")} className='btn-link'>
+                    Don't have an account?
+                    </Link>
                 </div>
             </form>
         </GuestLayout>
