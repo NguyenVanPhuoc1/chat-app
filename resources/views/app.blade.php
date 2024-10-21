@@ -1,10 +1,13 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }} " class="dark">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title inertia>{{ config('app.name', 'Laravel') }}</title>
+
+        <!-- Icons -->
+        <link rel="shortcut icon" href="{{ asset('images/logo.png') }}" type="image/x-icon">
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">

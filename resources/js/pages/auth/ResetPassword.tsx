@@ -2,7 +2,7 @@ import InputError from '@/components/InputError';
 import InputLabel from '@/components/InputLabel';
 import PrimaryButton from '@/components/PrimaryButton';
 import TextInput from '@/components/TextInput';
-import GuestLayout from '@/Layouts/GuestLayout';
+import GuestLayout from '@/layouts/GuestLayout';
 import { Head, useForm } from '@inertiajs/react';
 import { FormEventHandler } from 'react';
 
@@ -89,7 +89,7 @@ export default function ResetPassword({
                     />
                 </div>
 
-                <div className="mt-4 flex items-center justify-end">
+                <div className="mt-4 flex items-center justify-center">
                     <PrimaryButton className="ms-4" disabled={processing}>
                         Reset Password
                     </PrimaryButton>
