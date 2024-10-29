@@ -18,7 +18,7 @@ class ProfileController extends Controller
      */
     public function edit(Request $request): Response
     {
-        return Inertia::render('Profile/Edit', [
+        return Inertia::render('profile/Edit', [
             'mustVerifyEmail' => $request->user() instanceof MustVerifyEmail,
             'status' => session('status'),
         ]);
@@ -29,15 +29,25 @@ class ProfileController extends Controller
      */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
-        $request->user()->fill($request->validated());
+        $attributes = $request->validated();
+        if ($request->hasFile('avatar')) {
+            //thêm ảnh mới
+            $attributes['avatar'] = upload_file($request->file('avatar'), 'user');
+            // xóa ảnh cũ
+            remove_file($request->user()->avatar);
+        } else {
+            unset($attributes['avatar']);
+        }
+
+        $request->user()->fill($attributes);
 
         if ($request->user()->isDirty('email')) {
             $request->user()->email_verified_at = null;
         }
 
-        $request->user()->save();
+        $request->user()->update($attributes);
 
-        return Redirect::route('profile.edit');
+        return back();
     }
 
     /**
