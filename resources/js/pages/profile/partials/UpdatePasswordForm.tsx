@@ -2,6 +2,7 @@ import InputError from '@/components/InputError';
 import InputLabel from '@/components/InputLabel';
 import PrimaryButton from '@/components/PrimaryButton';
 import TextInput from '@/components/TextInput';
+import { ResetPasswordSchema, UpdatePasswordSchema } from '@/types/user';
 import { Transition } from '@headlessui/react';
 import { useForm } from '@inertiajs/react';
 import { FormEventHandler, useRef } from 'react';
@@ -22,7 +23,7 @@ export default function UpdatePasswordForm({
         reset,
         processing,
         recentlySuccessful,
-    } = useForm({
+    } = useForm<UpdatePasswordSchema>({
         current_password: '',
         password: '',
         password_confirmation: '',
@@ -51,11 +52,11 @@ export default function UpdatePasswordForm({
     return (
         <section className={className}>
             <header>
-                <h2 className="text-lg font-medium text-gray-900">
+                <h2 className="text-lg font-medium text-foreground">
                     Update Password
                 </h2>
 
-                <p className="mt-1 text-sm text-gray-600">
+                <p className="mt-1 text-sm text-secondary-foreground">
                     Ensure your account is using a long, random password to stay
                     secure.
                 </p>
